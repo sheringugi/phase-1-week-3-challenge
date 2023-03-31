@@ -4,10 +4,10 @@ document.addEventListener("DOMContentLoaded", () =>{
     .then(response => response.json())
     .then(films => {
         // Display the list of all the movie names
-        const list = document.querySelector('#movieList');
+        const list = document.querySelector('#moviesList');
         films.forEach(film => {
             const item = document.createElement('li');
-            item.textContent = film.name;
+            item.textContent = film.title;
             item.addEventListener('click', () => {
                 // Get the details of a selected movie
                 fetch(`http://localhost:3000/films/${film.id}`)
@@ -17,32 +17,28 @@ document.addEventListener("DOMContentLoaded", () =>{
                     const details = document.querySelector('#movieDetails');
                     details.innerHTML = `
                         <h2>${data.title}</h2>
-                        <h3>${data.runtime}</h3>
+                        <h3>${data.runtime} minutes</h3>
                         <h4>${data.showtime}</h4>
                         <p>${data.description}</p>
                         <img src="${data.poster}" alt="${data.title}">
-                        <p>${data.tickets} votes</p>
+                        <h5>${data.tickets} tickets</h5>
                         <button id="buyTicket-btn">Buy Ticket</button>
-                        <button id ="reset-btn">Reset</button>
                     `;
-                    // Add the ability to add votes for the selected cute animal
-                    const ticketBtn = document.querySelector('#buyTicket-btn');
-                    let tickets = function getTickets(capacity, tickets_sold){
-                        return capacity - tickets_sold
+                    // Add the ability to buy tickets for the selected movie
+                    const voteBtn = document.querySelector('#buyTicket-btn');
+                    let tickets = data.tickets;
+                        voteBtn.addEventListener('click', () => {
+                            tickets= data.tickets;
+                            tickets--;
+                            data.tickets = tickets;
+                        details.querySelector('h5').textContent = `${tickets} tickets`;
+                        if (data.tickets<=0){
+                            details.querySelector('h5').textContent = "Sold Out"
+                        }
 
-                    }
-    
-                    ticketBtn.addEventListener('click', () => {
-                        tickets--;
-                        details.querySelector('p').textContent = `${tickets} tickets`;
                     });
-                    //Add ability to reset votes for the selected cute animals
-                    const resetBtn = document.querySelector('#reset-btn');
-                    resetBtn.addEventListener('click', () => {
-                        votes=0;
-                        details.querySelector('p').textContent = `${tickets} tickets`;
-                    });
-    
+
+
 
                 });
             });
