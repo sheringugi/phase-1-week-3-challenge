@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                     // Display the details of the selected cute animal
                     const details = document.querySelector('#movieDetails');
                     details.innerHTML = `
+                        <div class="absolute"> 
                         <h2>${data.title}</h2>
                         <h3>${data.runtime} minutes</h3>
                         <h4>${data.showtime}</h4>
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                         <img src="${data.poster}" alt="${data.title}">
                         <h5>${data.tickets} tickets</h5>
                         <button id="buyTicket-btn">Buy Ticket</button>
+                        </div>
                     `;
                     // Add the ability to buy tickets for the selected movie
                     const voteBtn = document.querySelector('#buyTicket-btn');
