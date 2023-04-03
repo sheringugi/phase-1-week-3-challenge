@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () =>{
                         </div>
                     `;
                     // Add the ability to buy tickets for the selected movie
-                    const voteBtn = document.querySelector('#buyTicket-btn');
+                    const ticketBtn = document.querySelector('#buyTicket-btn');
                     let tickets = data.tickets;
-                        voteBtn.addEventListener('click', () => {
+                        ticketBtn.addEventListener('click', () => {
                             tickets= data.tickets;
                             tickets--;
                             data.tickets = tickets;
@@ -37,8 +37,33 @@ document.addEventListener("DOMContentLoaded", () =>{
                         if (data.tickets<=0){
                             details.querySelector('h5').textContent = "Sold Out"
                         }
+                        if (data.tickets<=0){
+                            const btn = document.getElementById('buyTicket-btn');
+                            btn.addEventListener('click', function handleClick() {
+                                const button = 'Buy Ticket';
+                                button.textContent= `<button id="buyTicket-btn">Sold Out</button>`
+                        });
+                    }
 
                     });
+            
+
+
+                    // const changeTicketBtn= document.querySelector('#buyTicket-btn')
+                    // let ticket= 0;
+                    // changeTicketBtn.addEventListener('click', () =>{
+                    //     ticket= data.tickets
+                    //     button.innerHTML= `<button id="buyTicket-btn">Sold Out</button>`
+                    // });
+
+                    
+                    // // Bonus deliverable
+                    // //Add ability to delete a selected movie
+                    // const deleteBtn = document.querySelector('#delete-btn');
+                    // deleteBtn.addEventListener('click', () => {
+                    //     votes=0;
+                    //     const details = document.querySelector('#movieDetails');;
+                    // });
 
 
 

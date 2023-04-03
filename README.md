@@ -1,6 +1,6 @@
 # Phase 1: Week Three Challenge
 
-## Flatadango App
+## Flatdango App
 This is project creates a simple web application that allows users to view a list of movies. Upon clicking on the movies displayed, the user is able to view the and its details, and to purchase tickets for the selected movie. The application is built using JavaScript and uses the fetch API to make HTTP requests to a server running on `localhost:3000`.
 
 ### Features
